@@ -8,11 +8,16 @@ function Contact() {
     message: "",
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(form);
     alert("Hook this up to backend");
@@ -21,10 +26,12 @@ function Contact() {
   return (
     <>
       <Navbar />
+
       <div className="max-w-2xl mx-auto px-6 py-16">
         <h1 className="text-3xl font-bold mb-6">Contact</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+
           <input
             name="name"
             placeholder="Name"
@@ -35,6 +42,7 @@ function Contact() {
 
           <input
             name="email"
+            type="email"
             placeholder="Email"
             onChange={handleChange}
             value={form.email}
@@ -53,6 +61,7 @@ function Contact() {
           <button className="w-full bg-black text-white py-3 rounded-lg">
             Send
           </button>
+
         </form>
       </div>
     </>
