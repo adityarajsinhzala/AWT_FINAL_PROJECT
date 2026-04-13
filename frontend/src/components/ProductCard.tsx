@@ -7,7 +7,7 @@ const BASE_URL = "http://localhost:5000";
 function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const handleAddToCart = async () => {
-    addToCart({ ...product, quantity: 1 });
+    addToCart({ ...product, _id: String(product._id), quantity: 1 });
 
     try {
       const token = localStorage.getItem("token");

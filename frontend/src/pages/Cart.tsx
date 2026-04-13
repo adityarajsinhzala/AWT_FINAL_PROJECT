@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import CartSidebar from "../components/CartSidebar";
 import { useCart } from "../context/cartContext";

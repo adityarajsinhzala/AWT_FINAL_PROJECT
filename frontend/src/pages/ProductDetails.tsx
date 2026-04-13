@@ -10,6 +10,7 @@ type Product = {
   price: number;
   image: string;
 };
+
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
@@ -33,7 +34,9 @@ const ProductDetails = () => {
 
     fetchProduct();
   }, [id]);
+
   if (loading) return <p>Loading...</p>;
+
   if (!product) {
     return (
       <>
@@ -49,13 +52,15 @@ const ProductDetails = () => {
   }
 
   const handleAddToCart = () => {
-    addToCart({
-      id: Number(product._id),
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-    });
-  };
+  addToCart({
+    _id: product._id,
+    name: product.name,
+    price: product.price,
+    quantity: 1,
+    image: product.image,
+  });
+};
+
   return (
     <>
       <Navbar />

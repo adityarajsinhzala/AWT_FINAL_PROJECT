@@ -2,17 +2,16 @@ import { createContext, useContext, useState } from "react";
 import { products } from "../data/products.ts";
 
 type CartItem = {
-  _id: number;
+  _id: string;
   name: string;
   price: number;
   image: string;
   quantity: number;
 };
-
 type CartContextType = {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: string) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -20,13 +19,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
  const [cart, setCart] = useState<CartItem[]>(
   products.map((p) => ({
-    _id: p.id,
+    _id: String(p.id),
     name: p.name,
     price: p.price,
     image: p.image,
     quantity: 1,
   }))
 );
+
 
   const addToCart = (item: CartItem) => {
     setCart((prev) => {
@@ -44,9 +44,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: number) => {
-    setCart((prev) => prev.filter((item) => item._id !== id));
-  };
+  const removeFromCart = (id: string) => {
+  setCart((prev) => prev.filter((item) => item._id !== id));
+};
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
