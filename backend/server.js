@@ -5,12 +5,14 @@ import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import cors from "cors"
 import path from "path";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 
 app.use("/uploads", express.static(path.resolve("uploads")));
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     credentials: true,
   }))
 app.use(express.json());

@@ -3,7 +3,8 @@ import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
 const Login = () => {
   const { logged, login } = useAuth(); 

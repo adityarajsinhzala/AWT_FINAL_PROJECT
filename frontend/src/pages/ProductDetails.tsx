@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useCart } from "../context/cartContext";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 type Product = {
   _id: string;
   name: string;
@@ -20,7 +20,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
+      const res = await fetch(`${BASE_URL}/api/products/${id}`);
         if (!res.ok) throw new Error("Product not found");
         const data = await res.json();
         setProduct(data);

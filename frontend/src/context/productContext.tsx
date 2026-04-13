@@ -5,6 +5,7 @@ import type { Product } from "../types/type";
 type ProductContextType = {
   products: Product[];
 };
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
@@ -18,7 +19,7 @@ export const ProductProvider = ({
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/product");
+        const res = await fetch(`${BASE_URL}/api/product`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }

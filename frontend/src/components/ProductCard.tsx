@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type { Product } from "../types/type";
 import { useCart } from "../context/cartContext";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
@@ -11,7 +11,7 @@ function ProductCard({ product }: { product: Product }) {
 
     try {
       const token = localStorage.getItem("token");
-      await fetch("http://localhost:5000/api/products", {
+      await fetch(`${BASE_URL}/api/products`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
